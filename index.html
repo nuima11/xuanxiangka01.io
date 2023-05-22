@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <title>Document</title>
+</head>
+<style>
+  body{
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+  }
+  /* 整体高度在这里定义 */
+.tab-menu {
+  display: flex;
+  width: 50%;
+  height: 300px;  
+}
+
+.tab-menu-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  background-color: #d8d8d8;
+}
+
+.tab-menu-item {
+  padding: 10px 20px;
+  cursor: pointer;
+  border-bottom: 1px solid #ddd;
+}
+
+.tab-menu-item:last-child {
+  border-bottom: none;
+}
+
+.tab-menu-item.active {
+  background-color: #989898;
+  font-weight: bold;
+}
+
+.tab-content {
+  flex: 1;
+  padding: 20px;
+  background-color: rgb(201, 201, 201);
+}
+.tab-pane {
+  display: none;
+}
+
+.tab-pane.active {
+  display: block;
+  font-size: 30px;
+  font-weight: bold;
+  text-align: center;
+  line-height: 240px;
+}
+
+</style>
+<body>
+<div style="clear: both;"></div>
+<div class="tab-menu">
+    <ul class="tab-menu-list">
+        <li class="tab-menu-item active" data-tab="tab1">选项卡1</li>
+        <li class="tab-menu-item" data-tab="tab2">选项卡2</li>
+        <li class="tab-menu-item" data-tab="tab3">选项卡3</li>
+        <li class="tab-menu-item" data-tab="tab4">选项卡4</li>
+        <li class="tab-menu-item" data-tab="tab5">选项卡5</li>
+    </ul>
+    <div class="tab-content">
+        <div class="tab-pane active" data-tab="tab1">选项卡1的内容</div>
+        <div class="tab-pane" data-tab="tab2">选项卡2的内容</div>
+        <div class="tab-pane" data-tab="tab3">选项卡3的内容</div>
+        <div class="tab-pane" data-tab="tab4">选项卡4的内容</div>
+        <div class="tab-pane" data-tab="tab5">选项卡5的内容</div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $('.tab-menu-item').click(function () {
+            var tab = $(this).data('tab');
+            $('.tab-menu-item').removeClass('active');
+            $(this).addClass('active');
+            $('.tab-pane').removeClass('active');
+            $('.tab-pane[data-tab="' + tab + '"]').addClass('active');
+        });
+    });
+</script>
+</body>
+</html>
